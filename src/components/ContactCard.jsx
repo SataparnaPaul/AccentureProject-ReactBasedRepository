@@ -22,19 +22,30 @@ const ContactCard = ({ email, phone, socials }) => {
           Social links
         </p>
         <ul className="mt-4 space-y-3 text-sm text-slate-200">
-          {socials.map((social) => (
-            <li key={social.label}>
-              <a
-                href={social.href}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-between rounded-xl border border-white/10 px-4 py-2 transition hover:border-emerald-300/50 hover:text-white"
-              >
-                <span>{social.label}</span>
-                <span className="text-xs text-emerald-300">Visit</span>
-              </a>
-            </li>
-          ))}
+          {socials.map((social) => {
+            const isDisabled = !social.href
+
+            return (
+              <li key={social.label}>
+                {isDisabled ? (
+                  <div className="flex items-center justify-between rounded-xl border border-white/10 px-4 py-2 text-slate-500">
+                    <span>{social.label}</span>
+                    <span className="text-xs">Unavailable</span>
+                  </div>
+                ) : (
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-between rounded-xl border border-white/10 px-4 py-2 transition hover:border-emerald-300/50 hover:text-white"
+                  >
+                    <span>{social.label}</span>
+                    <span className="text-xs text-emerald-300">Visit</span>
+                  </a>
+                )}
+              </li>
+            )
+          })}
         </ul>
       </div>
     </div>

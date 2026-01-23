@@ -7,7 +7,7 @@ import useGitHubUser from '../hooks/useGitHubUser.js'
 const Contact = () => {
   const { user, isLoading, error } = useGitHubUser()
 
-  const email = user?.email || 'Not provided by GitHub API'
+  const email = user?.email || 'Not avavilable'
   const phone = '+1 (555) 010-2026'
   const socials = [
     {
@@ -21,8 +21,8 @@ const Contact = () => {
         : 'https://twitter.com',
     },
     {
-      label: 'LinkedIn (placeholder)',
-      href: 'https://www.linkedin.com',
+      label: 'LinkedIn',
+      href: '',
     },
   ]
 

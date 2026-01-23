@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import githubLogo from '../assets/github-logo.svg'
 
 const navItems = [
   { label: 'Home', to: '/' },
@@ -10,11 +11,18 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-20 border-b border-white/10 bg-slate-950/80 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
-            React Git Dashboard
-          </p>
-          <p className="text-lg font-semibold text-white">Assignment</p>
+        <div className="flex items-center gap-4">
+          <img
+            src={githubLogo}
+            alt="GitHub logo"
+            className="h-12 w-12 rounded-2xl border border-white/10 bg-slate-950/40 p-2"
+          />
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
+              Brad Traversy Git Dashboard
+            </p>
+            <p className="text-lg font-semibold text-white">Assignment</p>
+          </div>
         </div>
         <nav className="flex flex-wrap items-center gap-3 text-sm font-medium text-slate-300">
           {navItems.map((item) => (
