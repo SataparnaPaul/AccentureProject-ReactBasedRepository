@@ -21,7 +21,7 @@ const Navbar = () => {
             <p className="text-xs uppercase tracking-[0.3em] text-slate-400">
               Brad Traversy Git Dashboard
             </p>
-            <p className="text-lg font-semibold text-white">Assignment</p>
+            
           </div>
         </div>
         <nav className="flex flex-wrap items-center gap-3 text-sm font-medium text-slate-300">
