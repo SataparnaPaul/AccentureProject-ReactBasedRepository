@@ -1,11 +1,11 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 
 const ProfileCard = ({ user }) => {
   const [avatarError, setAvatarError] = useState(false)
   const fallbackAvatar =
     'https://avatars.githubusercontent.com/u/5550850?v=4'
   const avatarSrc = user?.avatar_url || fallbackAvatar
-  const initials = useMemo(() => {
+  const initials = (() => {
     if (!user?.name) {
       return user?.login?.slice(0, 2).toUpperCase() || 'GH'
     }
@@ -16,7 +16,7 @@ const ProfileCard = ({ user }) => {
       .slice(0, 2)
       .map((part) => part[0]?.toUpperCase())
       .join('')
-  }, [user])
+  })()
 
   return (
     <div className="grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-cyan-500/10 md:grid-cols-[140px_1fr]">
