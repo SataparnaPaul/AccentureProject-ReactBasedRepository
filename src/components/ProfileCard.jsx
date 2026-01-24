@@ -1,12 +1,45 @@
+import { useMemo, useState } from 'react'
+
 const ProfileCard = ({ user }) => {
+  const [avatarError, setAvatarError] = useState(false)
+  const fallbackAvatar =
+    'https://avatars.githubusercontent.com/u/5550850?v=4'
+  const avatarSrc = user?.avatar_url || fallbackAvatar
+  const initials = useMemo(() => {
+    if (!user?.name) {
+      return user?.login?.slice(0, 2).toUpperCase() || 'GH'
+    }
+
+    return user.name
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase())
+      .join('')
+  }, [user])
+
   return (
     <div className="grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl shadow-cyan-500/10 md:grid-cols-[140px_1fr]">
       <div className="flex items-center justify-center">
-        <img
-          src={user.avatar_url}
-          alt={user.name || user.login}
-          className="h-32 w-32 rounded-3xl border border-white/20 object-cover"
-        />
+        {avatarError ? (
+          <div className="flex h-32 w-32 items-center justify-center rounded-3xl border border-white/20 bg-slate-950/60 text-2xl font-semibold text-cyan-200">
+            {initials}
+          </div>
+        ) : (
+          <img
+            src={avatarSrc}
+            alt={user.name || user.login}
+            className="h-32 w-32 rounded-3xl border border-white/20 object-cover"
+            loading="lazy"
+            onError={(event) => {
+              if (event.currentTarget.src !== fallbackAvatar) {
+                event.currentTarget.src = fallbackAvatar
+                return
+              }
+              setAvatarError(true)
+            }}
+          />
+        )}
       </div>
       <div>
         <p className="text-sm uppercase tracking-[0.35em] text-cyan-300">
